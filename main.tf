@@ -49,7 +49,7 @@ resource "github_branch_protection" "for" {
   for_each = merge([
     for repoName, repoCfg in local.repositories : merge(
       { for p in repoCfg.protections : "${repoName}:${p.pattern}" => merge(
-        p, { repository_id = github_repository.named[repoName].id }
+        p, { repository_id = github_repository.named[repoName].node_id }
       ) }
     )
   ]...)
