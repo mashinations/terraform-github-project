@@ -1,0 +1,35 @@
+## TerraForm Files
+.terraform
+.terraformrc
+*.tfstate
+*.tfstate.*
+*.tfvars
+terraform.rc
+
+## TerraGrunt Files
+.terragrunt
+.terragrunt-cache
+
+## System Files (OSX)
+.AppleDB
+.AppleDesktop
+.AppleDouble
+.DocumentRevisions-V100
+.DS_Store
+.fseventsd
+.LSOverride
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+## System Files (Unix)
+.directory
+.nfs*
+*~
+Trash-*
+
+## System Files (Win)
+[Dd]esktop.ini
+[Tt]humbs.db
+$RECYCLE.BIN
