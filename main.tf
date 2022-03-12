@@ -14,6 +14,7 @@ resource "github_repository" "named" {
   topics             = each.value.topics
   visibility         = each.value.visibility
 
+  allow_auto_merge       = each.value.allow_auto_merge
   allow_merge_commit     = each.value.allow_merge_commit
   allow_rebase_merge     = each.value.allow_rebase_merge
   allow_squash_merge     = each.value.allow_squash_merge
@@ -54,14 +55,15 @@ resource "github_branch_protection" "for" {
     )
   ]...)
 
-  repository_id           = each.value.repository_id
-  pattern                 = each.value.pattern
-  allows_deletions        = each.value.allows_deletions
-  allows_force_pushes     = each.value.allows_force_pushes
-  enforce_admins          = each.value.enforce_admins
-  push_restrictions       = each.value.push_restrictions
-  require_signed_commits  = each.value.require_signed_commits
-  required_linear_history = each.value.required_linear_history
+  repository_id                   = each.value.repository_id
+  pattern                         = each.value.pattern
+  allows_deletions                = each.value.allows_deletions
+  allows_force_pushes             = each.value.allows_force_pushes
+  enforce_admins                  = each.value.enforce_admins
+  push_restrictions               = each.value.push_restrictions
+  require_conversation_resolution = each.value.require_conversation_resolution
+  require_signed_commits          = each.value.require_signed_commits
+  required_linear_history         = each.value.required_linear_history
 
   dynamic "required_pull_request_reviews" {
     for_each = each.value.required_pull_request_reviews == null ? [] : [each.value.required_pull_request_reviews]
@@ -69,6 +71,7 @@ resource "github_branch_protection" "for" {
     content {
       dismiss_stale_reviews           = required_pull_request_reviews.value.dismiss_stale_reviews
       dismissal_restrictions          = required_pull_request_reviews.value.dismissal_restrictions
+      pull_request_bypassers          = required_pull_request_reviews.value.pull_request_bypassers
       require_code_owner_reviews      = required_pull_request_reviews.value.require_code_owner_reviews
       required_approving_review_count = required_pull_request_reviews.value.required_approving_review_count
       restrict_dismissals             = required_pull_request_reviews.value.restrict_dismissals

@@ -15,6 +15,7 @@ variable "repositories" {
     license_template       = optional(string)
     topics                 = optional(set(string))
     visibility             = optional(string)
+    allow_auto_merge       = optional(bool)
     allow_merge_commit     = optional(bool)
     allow_rebase_merge     = optional(bool)
     allow_squash_merge     = optional(bool)
@@ -29,17 +30,19 @@ variable "repositories" {
     vulnerability_alerts   = optional(bool)
 
     protections = optional(list(object({
-      pattern                 = string
-      allows_deletions        = optional(bool)
-      allows_force_pushes     = optional(bool)
-      enforce_admins          = optional(bool)
-      push_restrictions       = optional(set(string))
-      require_signed_commits  = optional(bool)
-      required_linear_history = optional(bool)
+      pattern                         = string
+      allows_deletions                = optional(bool)
+      allows_force_pushes             = optional(bool)
+      enforce_admins                  = optional(bool)
+      push_restrictions               = optional(set(string))
+      require_conversation_resolution = optional(bool)
+      require_signed_commits          = optional(bool)
+      required_linear_history         = optional(bool)
 
       required_pull_request_reviews = optional(object({
         dismiss_stale_reviews           = optional(bool)
         dismissal_restrictions          = optional(set(number))
+        pull_request_bypassers          = optional(set(string))
         require_code_owner_reviews      = optional(bool)
         required_approving_review_count = optional(number)
         restrict_dismissals             = optional(bool)
