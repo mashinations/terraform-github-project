@@ -45,7 +45,7 @@ module "terraform-github-test" {
     })
     "terraform-github-test-team-pull" = merge(local.team_settings, {
       people = {
-        "jrmash-qa" = { email = "76767818+jrmash-qa@users.noreply.github.com", role = "maintainer" },
+        "jrmash" = { email = "2574997+jrmash@users.noreply.github.com", role = "maintainer" },
       },
       permissions = "pull",
     })
